@@ -48,7 +48,7 @@
 &kp F1          &kp F2        &kp F3        &kp F4        &kp F5        &kp F6                                 &kp F7      &kp F8                &kp F9                &kp F10           &kp F11            &kp F12
 &kp GRAVE       &kp EXCL      &kp AT        &kp HASH      &kp DOLLAR    &kp PRCNT                              &kp CARET   &kp AMPS              &kp ASTERISK          &kp LPAR          &kp RPAR           &kp TILDE
 &kp LEFT_SHIFT  &trans        &trans        &trans        &trans        &trans        &trans    &trans         &kp PLUS    &kp MINUS             &kp EQUAL             &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp RIGHT_SHIFT
-                                            &trans        &trans        &trans        &trans    &kp LA(ENTER)  &kp DELETE  &kp RIGHT_COMMAND     &kp RIGHT_ALT
+                                            &trans        &trans        &trans        &trans    &kp LA(SPACE)  &kp DELETE  &kp RIGHT_COMMAND     &kp RIGHT_ALT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
