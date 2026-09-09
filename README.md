@@ -69,3 +69,9 @@ animation checks (requires a C compiler). Firmware validation uses the existing
 Actions matrix. The reusable workflow is hosted in `pmartindev/zmk`, but
 `config/west.yml` fetches firmware from **zmkfirmware/zmk at main**; neither was
 changed. Future upstream API changes may require updating this local shield.
+
+Both board entries use `nice_nano@2.0.0//zmk`, the current name for the same
+nice!nano v2 hardware: the initial build failed for both halves because current
+ZMK no longer recognizes `nice_nano_v2`. Explicit artifact names preserve the
+UF2 filenames above and avoid slashes in filenames. The left shield and keymap
+remain stock/unchanged.

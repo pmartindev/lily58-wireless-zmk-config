@@ -144,20 +144,25 @@ static void animate(void *obj, int32_t elapsed) {
         return;
     }
 
-    lv_canvas_fill_bg(grid, lv_color_white(), LV_OPA_COVER);
-    lv_layer_t layer;
-    lv_canvas_init_layer(grid, &layer);
+    /* Rasterize directly: queuing 140 canvas draw tasks exceeds the LVGL heap. */
+    lv_draw_buf_t *buffer = lv_canvas_get_draw_buf(grid);
+    uint32_t stride = buffer->header.stride;
+    memset(buffer->data, 0xff, stride * 58);
     for (unsigned column = 0; column < 10; ++column) {
         for (unsigned row = 0; row < 7; ++row) {
             int x = 36 - row * 6;
             int y = column * 6;
-            rect(&layer, x, y, 4, 4, true);
+            for (int dy = 0; dy < 4; ++dy) {
+                memset(buffer->data + (y + dy) * stride + x, 0, 4);
+            }
             if (!github_cell_filled(column * 7 + row, step)) {
-                rect(&layer, x + 1, y + 1, 2, 2, false);
+                for (int dy = 1; dy < 3; ++dy) {
+                    memset(buffer->data + (y + dy) * stride + x + 1, 0xff, 2);
+                }
             }
         }
     }
-    lv_canvas_finish_layer(grid, &layer);
+    lv_obj_invalidate(grid);
 }
 
 static int32_t elapsed_path(const lv_anim_t *animation) {

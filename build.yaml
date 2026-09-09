@@ -13,7 +13,10 @@
 #
 ---
 include:
-  - board: nice_nano_v2
+  # Current ZMK uses the hardware-model-v2 name for the same nice!nano v2.
+  - board: nice_nano@2.0.0//zmk
     shield: lily58_left nice_view_adapter nice_view
-  - board: nice_nano_v2
+    artifact-name: lily58_left nice_view_adapter nice_view-nice_nano_v2-zmk
+  - board: nice_nano@2.0.0//zmk
     shield: lily58_right nice_view_adapter nice_view_github
+    artifact-name: lily58_right nice_view_adapter nice_view_github-nice_nano_v2-zmk
