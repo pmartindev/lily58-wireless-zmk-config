@@ -213,7 +213,8 @@ lv_obj_t *zmk_display_status_screen(void) {
     /* One LVGL-owned loop: display blanking stops ZMK's existing display ticks. */
     lv_anim_t animation;
     lv_anim_init(&animation);
-    lv_anim_set_var(&animation, screen);
+    /* Loading a screen cancels its own animations; a child keeps this loop alive. */
+    lv_anim_set_var(&animation, art);
     lv_anim_set_exec_cb(&animation, animate);
     lv_anim_set_path_cb(&animation, elapsed_path);
     lv_anim_set_values(&animation, 0, GITHUB_LOOP_MS);
